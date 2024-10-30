@@ -1,3 +1,5 @@
+from typing import final
+
 import words_fetcher
 import random
 
@@ -5,9 +7,17 @@ import random
 def congratulate_user():
     print(f"Congratulations, you won! your words: {guesses}")
 
+def lose_words():
+    print(f"What a shame, you lose!")
 
 def is_game_over():
     return guessed == WORDS_TO_WIN or errors == ERRORS_TO_LOSE
+
+def final_decision():
+    if guessed == WORDS_TO_WIN:
+        congratulate_user()
+    else:
+        lose_words()
 
 guessed = 0
 errors = 0
@@ -41,3 +51,4 @@ while not is_game_over():
     else:
         errors += 1
         print(f"Oops :( No such word, you have {ERRORS_TO_LOSE - errors} lives more")
+final_decision()
